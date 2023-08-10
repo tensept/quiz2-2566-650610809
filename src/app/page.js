@@ -1,5 +1,10 @@
 "use client";
 
+import { PostOwner } from "@/components/PostOwner";
+import { Comment } from "@/components/Comment";
+import { comments } from "@/libs/comments";
+import { Reply } from "@/components/Reply";
+
 export default function HomePage() {
   return (
     <div
@@ -13,7 +18,8 @@ export default function HomePage() {
       >
         {/* Post Owner Example*/}
         <div className="vstack gap-3">
-          <div className="d-flex align-items-center gap-3">
+          <PostOwner name="Waenkaew Phimsena" id="650610809" userImage="/profileImages/popcat.png"/>
+          {/* <div className="d-flex align-items-center gap-3">
             <img
               src="/profileImages/handsome.jpg"
               width="48"
@@ -21,8 +27,7 @@ export default function HomePage() {
               className="rounded-circle"
               style={{ objectFit: "cover" }}
             />
-            <span className="fw-semibold fs-5">Chayanin Suatap 650610560</span>
-          </div>
+            <span className="fw-semibold fs-5">Chayanin Suatap 650610560</span> */}
 
           <span>Quiz ง่ายจังเลยครับ ขอยาก ๆ กว่านี้ได้ไหม #261207</span>
 
@@ -30,11 +35,34 @@ export default function HomePage() {
             <img src="/like.svg" width={20}></img>
             <span className="text-muted">100 คน</span>
           </div>
-          <hr className="m-0 border" />
+          <hr className="m-0 border" /> 
         </div>
 
         {/* Comment Example */}
-        <div className="d-flex gap-2 my-2">
+        {comments.map((comment,i) =>(
+        <Comment 
+           key = {i}
+           userImagePath ={comment.userImagePath}
+           username = {comment.username}
+           commentText={comment.commentText}
+           likeNum={comment.likeNum}
+           replies={comment.replies.username}
+           />
+        
+        ))}
+
+        {comments.map((comment,i) =>(
+        <Reply
+           key = {i}
+           userImagePath ={comment.replies.userImagePath}
+           username = {comment.replies.username}
+           commentText={comment.replies.commentText}
+           likeNum={comment.replies.likeNum}
+           />
+        ))} 
+  
+        
+        {/* <div className="d-flex gap-2 my-2">
           <img
             src="/profileImages/lisa.jpg"
             width="48"
@@ -54,10 +82,10 @@ export default function HomePage() {
               <span className="text-muted">999 คน</span>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Reply Example */}
-        <div className="d-flex gap-2 my-2 ps-5">
+        {/* <div className="d-flex gap-2 my-2 ps-5">
           <img
             src="/profileImages/puppy.jpg"
             width="48"
@@ -77,7 +105,7 @@ export default function HomePage() {
               <span className="text-muted">2 คน</span>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* map-loop render Comment component here */}
       </div>
