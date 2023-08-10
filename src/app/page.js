@@ -46,20 +46,11 @@ export default function HomePage() {
            username = {comment.username}
            commentText={comment.commentText}
            likeNum={comment.likeNum}
-           replies={comment.replies.username}
            />
         
         ))}
 
-        {comments.map((comment,i) =>(
-        <Reply
-           key = {i}
-           userImagePath ={comment.replies.userImagePath}
-           username = {comment.replies.username}
-           commentText={comment.replies.commentText}
-           likeNum={comment.replies.likeNum}
-           />
-        ))} 
+        <Reply />
   
         
         {/* <div className="d-flex gap-2 my-2">

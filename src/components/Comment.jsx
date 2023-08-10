@@ -1,4 +1,5 @@
 import { comments } from "@/libs/comments";
+import { Reply } from "./Reply";
 
 export const Comment = ({
   userImagePath,
@@ -27,9 +28,17 @@ export const Comment = ({
             <div className="d-flex align-items-center gap-1">
               <img src="/like.svg" width={20}></img>
               <span className="text-muted">{likeNum} คน</span>
-            </div>)}
+            </div>)} 
+            {comments.map((reply,i) => (
+              <Reply 
+                key = {i}
+                userImagePath={reply.replies.userImagePath}
+                username={reply.replies.username}
+                replyText={reply.replies.replyText}
+                likeNum={reply.replies.likeNum}
+              />))
+            }
           </div>
-          {replies}
         </div>
   );
 };
